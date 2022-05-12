@@ -1,0 +1,2 @@
+Para criar um novo projeto o comando é 
+flutter create "nome_projeto"
