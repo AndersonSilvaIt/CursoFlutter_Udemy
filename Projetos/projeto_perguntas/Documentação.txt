@@ -1,0 +1,5 @@
+Para criar o projeto, usar o comando
+
+flutter create project_name
+
+se atentar na nomenclatura do projeto, não pode usar letra maiúscula
