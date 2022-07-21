@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+import './questao.dart';
 
 import 'package:flutter/material.dart';
 
@@ -32,7 +32,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Text(perguntas[_perguntaSelecionada]),
+            Questao(perguntas[_perguntaSelecionada]),
             RaisedButton(
               child: Text('Resposta 1'),
               onPressed: _responder,
