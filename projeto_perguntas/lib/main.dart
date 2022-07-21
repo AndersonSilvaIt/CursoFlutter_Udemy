@@ -1,24 +1,19 @@
-// ignore_for_file: avoid_print, duplicate_ignore
 
 import 'package:flutter/material.dart';
 
-void main() => runApp(PerguntaApp());
+void main() => runApp(const PerguntaApp());
 
-
-class PerguntaApp extends StatelessWidget {
-  
-  const PerguntaApp({Key? key}) : super(key: key);
-
+class PerguntaAppState extends State<PerguntaApp> {
+ 
+  var perguntaSelecionada = 0;
   void responder() {
     // ignore: avoid_print
-    print('Pergunta respondida');
-  }
+    
+    setState(() {
+      perguntaSelecionada++;
+    });
 
-  void Function() funcaoQueRetornaUmaOutraFuncao() {
-    return () {
-      // ignore: avoid_print
-      print('Pergunta Respondida Teste');
-    };
+    print(perguntaSelecionada);
   }
 
   @override
@@ -36,18 +31,15 @@ class PerguntaApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text(perguntas[0]),
+            Text(perguntas[perguntaSelecionada]),
             ElevatedButton(
               child: const Text('Resposta 1'),
-              onPressed: funcaoQueRetornaUmaOutraFuncao(),
+              onPressed: responder,
             ),
             ElevatedButton(
               child: const Text('Resposta 2'),
               // ignore: duplicate_ignore
-              onPressed: () {
-                // ignore: avoid_print
-                print('Resposta 02 foi selecionada');
-              },
+              onPressed: responder,
             ),
             ElevatedButton(
               child: const Text('Resposta 3'),
@@ -55,11 +47,20 @@ class PerguntaApp extends StatelessWidget {
             ),
             ElevatedButton(
               child: const Text('Resposta 4'),
-              onPressed: () => print('Resposta 04'),
+              onPressed: responder,
             )                                                         
           ],
         ),
       ),
     );
+  }
+}
+
+class PerguntaApp extends StatefulWidget {
+  const PerguntaApp({Key? key}) : super(key: key);
+
+  @override
+  PerguntaAppState createState() {
+    return PerguntaAppState();
   }
 }
