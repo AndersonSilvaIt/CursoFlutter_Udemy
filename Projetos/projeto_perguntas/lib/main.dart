@@ -6,17 +6,20 @@ void main(List<String> args) {
   runApp(PerguntaApp());
 }
 
-
-class PerguntaApp extends StatelessWidget {
+class PerguntaAppState extends State<PerguntaApp> {
   
-void responder(){
-  print('Pergunta Respondida');
-}
+  var perguntaSelecionada = 0;
 
+  void responder() {
+    setState(() {
+      perguntaSelecionada++;
+    });
+    
+    print(perguntaSelecionada);
+  }
 
-@override
+  @override
   Widget build(BuildContext context) {
-
     final List<String> perguntas = [
       'Qual é a sua cor favorita',
       'Qual é o seu animal favorito'
@@ -24,28 +27,35 @@ void responder(){
 
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Perguntas'),
-          ),
-          body: Column(
-            children: [
-              Text(perguntas[0]),
-              RaisedButton(
-                child: Text('Resposta 1'),
-                onPressed: responder,
-              ),
-              RaisedButton(
-                child: Text('Resposta 2'),
-                onPressed:   () { print('Resposta 2 foi selecionada');},
-              ),
-              RaisedButton(
-                child: Text('Resposta 3'),
-                onPressed: () => print('Resposta 3'),
-              ),                            
-            ],
-          ),
+        appBar: AppBar(
+          title: Text('Perguntas'),
+        ),
+        body: Column(
+          children: [
+            Text(perguntas[perguntaSelecionada]),
+            RaisedButton(
+              child: Text('Resposta 1'),
+              onPressed: responder,
+            ),
+            RaisedButton(
+              child: Text('Resposta 2'),
+              onPressed: responder,
+            ),
+            RaisedButton(
+              child: Text('Resposta 3'),
+              onPressed: responder,
+            ),
+          ],
+        ),
       ),
     );
   }
+}
 
+class PerguntaApp extends StatefulWidget {
+  
+  @override
+  PerguntaAppState createState() {
+    return PerguntaAppState();
+  }
 }
