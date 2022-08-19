@@ -8,6 +8,17 @@ final void Function(String, double) onSubmit;
 
 TransactionForm(this.onSubmit);
 
+_submitForm() {
+  final title = titleController.text;
+  final value = double.tryParse(valueController.text) ?? 0.0;
+
+  if(title.isEmpty || value<= 0) {
+    return;
+  }
+
+    onSubmit(title, value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -18,12 +29,15 @@ TransactionForm(this.onSubmit);
           children: [
             TextField(
               controller: titleController,
+              onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(
                 labelText: 'Título',
               ),
             ),
             TextField(
               controller: valueController,
+              onSubmitted: (_) => _submitForm(),
+               keyboardType: TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
                 labelText: 'valor: (R\$)',
               ),
@@ -34,11 +48,8 @@ TransactionForm(this.onSubmit);
                 FlatButton(
                   child: Text('Nova Transação'),
                   textColor: Colors.purple,
-                  onPressed: () {
-                    final title = titleController.text;
-                    final value = double.tryParse(valueController.text) ?? 0.0;
-                    onSubmit(title, value);
-                  },
+                  onPressed: _submitForm
+                 ,
                 ),
               ],
             )
