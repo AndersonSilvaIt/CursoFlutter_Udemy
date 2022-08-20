@@ -9,10 +9,14 @@ void main(List<String> args) {
 }
 
 class ExpensesApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(secondary: Color.fromARGB(255, 26, 4, 150))
+       ),
     );
   }
 }
@@ -69,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () => _openTransactionFormModal(context),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
