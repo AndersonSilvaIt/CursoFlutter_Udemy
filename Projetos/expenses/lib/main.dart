@@ -9,14 +9,26 @@ void main(List<String> args) {
 }
 
 class ExpensesApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(secondary: Color.fromARGB(255, 26, 4, 150))
-       ),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+              .copyWith(secondary: Color.fromARGB(255, 26, 4, 150)),
+          fontFamily: 'Quicksand',
+          textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: TextStyle(
+                  fontFamily: 'Quicksand',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold)),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold)),
+          )),
     );
   }
 }
@@ -68,7 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Despesas Pessoais'),
+        title: const Text(
+          'Despesas Pessoais',
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
