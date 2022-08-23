@@ -4,9 +4,9 @@ import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-
+  final void Function(String) onRemove;
   // ignore: use_key_in_widget_constructors
-  const TransactionList(this.transactions);
+  const TransactionList(this.transactions, this.onRemove);
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +59,11 @@ class TransactionList extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     subtitle: Text(DateFormat('d MMM y').format(tr.date)),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                      onPressed: () => onRemove(tr.id),
+                    ),
                   ),
                 );
               },
