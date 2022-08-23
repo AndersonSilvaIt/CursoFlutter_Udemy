@@ -1,12 +1,11 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
 class Resultado extends StatelessWidget {
   final int pontuacao;
   final void Function() quandoReiniciarQuestionario;
 
-  Resultado(this.pontuacao, this.quandoReiniciarQuestionario);
+  // ignore: use_key_in_widget_constructors
+  const Resultado(this.pontuacao, this.quandoReiniciarQuestionario);
 
   String get fraseResultado {
     if (pontuacao < 8) {
@@ -28,16 +27,19 @@ class Resultado extends StatelessWidget {
         Center(
           child: Text(
             fraseResultado,
-            style: TextStyle(fontSize: 28),
+            style: const TextStyle(fontSize: 28),
           ),
         ),
-        FlatButton(
-          child: Text(
-            'Reiniciar',
-            style: TextStyle(fontSize: 18),
-          ),
-          textColor: Colors.blue,
+        TextButton(
           onPressed: quandoReiniciarQuestionario,
+          //textColor: Colors.blue,
+          child: const Text(
+            'Reiniciar',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.blue,
+            ),
+          ),
         )
       ],
     );

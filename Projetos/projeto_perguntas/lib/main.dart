@@ -3,7 +3,7 @@ import './questionario.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
-  runApp(PerguntaApp());
+  runApp(const PerguntaApp());
 }
 
 class _PerguntaAppState extends State<PerguntaApp> {
@@ -79,6 +79,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
 }
 
 class PerguntaApp extends StatefulWidget {
+  const PerguntaApp({Key? key}) : super(key: key);
+
   @override
+  // ignore: library_private_types_in_public_api
   _PerguntaAppState createState() => _PerguntaAppState();
 }

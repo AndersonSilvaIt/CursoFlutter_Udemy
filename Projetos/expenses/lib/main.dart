@@ -6,28 +6,33 @@ import 'components/transaction_list.dart';
 import 'models/transaction.dart';
 
 void main(List<String> args) {
-  runApp(ExpensesApp());
+  runApp(const ExpensesApp());
 }
 
 class ExpensesApp extends StatelessWidget {
+  const ExpensesApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      home: const MyHomePage(),
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
-              .copyWith(secondary: Color.fromARGB(255, 26, 4, 150)),
+              .copyWith(secondary: const Color.fromARGB(255, 26, 4, 150)),
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
-                  fontFamily: 'Quicksand',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold)),
+              headline6: const TextStyle(
+                fontFamily: 'Quicksand',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              button: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold)),
           appBarTheme: AppBarTheme(
             toolbarTextStyle: ThemeData.light()
                 .textTheme
                 .copyWith(
-                    headline6: TextStyle(
+                    headline6: const TextStyle(
                         fontFamily: 'OpenSans',
                         fontSize: 20,
                         fontWeight: FontWeight.bold))
@@ -35,7 +40,7 @@ class ExpensesApp extends StatelessWidget {
             titleTextStyle: ThemeData.light()
                 .textTheme
                 .copyWith(
-                    headline6: TextStyle(
+                    headline6: const TextStyle(
                         fontFamily: 'OpenSans',
                         fontSize: 20,
                         fontWeight: FontWeight.bold))
@@ -46,37 +51,15 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-      id: 't0',
-      title: 'Conta antiga',
-      value: 400.00,
-      date: DateTime.now().subtract(
-        const Duration(days: 33),
-      ),
-    ),
-    Transaction(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 310.76,
-      date: DateTime.now().subtract(
-        const Duration(days: 3),
-      ),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de Luz',
-      value: 211.30,
-      date: DateTime.now().subtract(
-        const Duration(days: 4),
-      ),
-    ),
-  ];
+
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -86,12 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _addTransaction(String title, double valuer) {
+  _addTransaction(String title, double value, DateTime? date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
-      value: valuer,
-      date: DateTime.now(),
+      value: value,
+      date: date!,
     );
 
     setState(() {
@@ -103,10 +86,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return TransactionForm(_addTransaction);
-        });
+      context: context,
+      builder: (_) {
+        return TransactionForm(_addTransaction);
+      },
+    );
   }
 
   @override
@@ -129,7 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Chart(
               _recentTransactions,
-              recentTransaction: const [],
             ),
             TransactionList(_transactions),
           ],

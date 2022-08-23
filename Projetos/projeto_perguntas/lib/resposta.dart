@@ -1,6 +1,3 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
 
 class Resposta extends StatelessWidget {
@@ -10,20 +7,20 @@ class Resposta extends StatelessWidget {
 
 
 
-  Resposta(this.texto, this.quandoSelecionado);
+  // ignore: use_key_in_widget_constructors
+  const Resposta(this.texto, this.quandoSelecionado);
 
 
   @override
   Widget build(BuildContext context) {
     
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: RaisedButton(
         textColor: Colors.white,
         color: Colors.blue,
-        child: Text(this.texto),
         onPressed: quandoSelecionado,
-      
+        child: Text(texto),
       ),
     );
   }

@@ -7,7 +7,8 @@ class Questionario extends StatelessWidget {
   final int perguntaSelecionada;
   final void Function(int) responder;
 
-  Questionario({
+  // ignore: use_key_in_widget_constructors
+  const Questionario({
     required this.perguntas,
     required this.perguntaSelecionada,
     required this.responder,
