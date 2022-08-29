@@ -58,8 +58,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final List<Transaction> _transactions = [];
+
+  bool _showChart = false;
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -84,13 +85,13 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
-_removeTransaction(String id){
-  setState(() {
-    _transactions.removeWhere((tr) {
+  _removeTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((tr) {
         return tr.id == id;
+      });
     });
-  });
-}
+  }
 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
@@ -103,26 +104,55 @@ _removeTransaction(String id){
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Despesas Pessoais',
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => _openTransactionFormModal(context),
-          ),
-        ],
+    final appBar = AppBar(
+      title: const Text(
+        'Despesas Pessoais',
+        /*style: TextStyle(
+          fontSize: 10 * MediaQuery.of(context).textScaleFactor,
+        ),*/
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () => _openTransactionFormModal(context),
+        ),
+      ],
+    );
+
+    final avainableHeight = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(
-              _recentTransactions,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Exibir Gráfico'),
+                Switch(
+                    value: _showChart,
+                    onChanged: (value) {
+                      setState(() {
+                        _showChart = value;
+                      });
+                    }),
+              ],
             ),
-            TransactionList(_transactions, _removeTransaction),
+            if (_showChart)
+              SizedBox(
+                height: avainableHeight * 0.30,
+                child: Chart(
+                  _recentTransactions,
+                ),
+              )
+            else
+              SizedBox(
+                  height: avainableHeight * 0.70,
+                  child: TransactionList(_transactions, _removeTransaction)),
           ],
         ),
       ),

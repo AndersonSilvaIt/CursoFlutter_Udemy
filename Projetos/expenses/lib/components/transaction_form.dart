@@ -5,7 +5,8 @@ class TransactionForm extends StatefulWidget {
 
   final void Function(String, double, DateTime?) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  // ignore: use_key_in_widget_constructors
+  const TransactionForm(this.onSubmit);
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
