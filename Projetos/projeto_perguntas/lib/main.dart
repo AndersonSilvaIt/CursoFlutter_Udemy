@@ -1,5 +1,3 @@
-import 'package:flutter/services.dart';
-
 import './resultado.dart';
 import './questionario.dart';
 import 'package:flutter/material.dart';
