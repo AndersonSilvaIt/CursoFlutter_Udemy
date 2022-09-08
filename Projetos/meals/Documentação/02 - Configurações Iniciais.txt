@@ -1,0 +1,4 @@
+para usar fontes externas, é necessário obter o arquivo  "ttf",
+também é necessário registrar as fontes no arquivo pubspec.yaml
+
+CanvasColor -> cor de fundo da tela

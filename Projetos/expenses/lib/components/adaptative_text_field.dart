@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AdaptativeTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
@@ -20,6 +21,7 @@ class AdaptativeTextField extends StatelessWidget {
   _verifyIsIOS() {
     try {
       _isApple = Platform.isIOS;
+    // ignore: empty_catches
     } catch (e) {}
   }
 

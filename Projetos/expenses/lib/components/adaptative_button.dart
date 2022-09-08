@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AdaptativeButton extends StatelessWidget {
 
   final String label;
@@ -18,6 +19,7 @@ class AdaptativeButton extends StatelessWidget {
   _verifyIsIOS() {
     try {
       _isApple = Platform.isIOS;
+    // ignore: empty_catches
     } catch (e) {}
   }
 

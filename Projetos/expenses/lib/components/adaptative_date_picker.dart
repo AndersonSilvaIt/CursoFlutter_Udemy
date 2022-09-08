@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class AdaptativeDatePicker extends StatelessWidget {
   final DateTime? selectedDate;
   final Function(DateTime) onDateChanged;
@@ -34,6 +35,7 @@ class AdaptativeDatePicker extends StatelessWidget {
   _verifyIsIOS() {
     try {
       _isApple = Platform.isIOS;
+    // ignore: empty_catches
     } catch (e) {}
   }
 

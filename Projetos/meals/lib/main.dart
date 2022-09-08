@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
-import 'screeens/categories_screen.dart';
+import 'screens/categories_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
+  final ThemeData tema = ThemeData();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Vamos Cozinhar?',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: const Color.fromARGB(255, 41, 7, 233),
+          secondary: Colors.blue,
+        ),
+        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+        fontFamily: 'Raleway',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: const TextStyle(
+                fontSize: 20,
+                fontFamily: 'RobotoCondensed',
+              ),
+            ),
       ),
       home: const CategoriesScreen(),
     );

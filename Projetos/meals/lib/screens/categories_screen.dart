@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meals/components/categorya_item.dart';
-import 'package:meals/data/dummy_data.dart';
+import '../components/category_item.dart';
+import '../data/dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -12,6 +12,7 @@ class CategoriesScreen extends StatelessWidget {
         title: const Text('Vamos Cozinhar?'),
       ),
       body: GridView(
+        padding: const EdgeInsets.all(25),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
           childAspectRatio: 3 / 2,
