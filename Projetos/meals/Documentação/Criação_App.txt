@@ -1,0 +1,3 @@
+flutter create meals
+
+irá criar o projeto, com todos os recursos necessários

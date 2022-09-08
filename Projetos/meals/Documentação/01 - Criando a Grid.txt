@@ -1,0 +1,17 @@
+Criado o componente da tela de Categoria
+
+Criado a lista de categoria ( MOC ) dummy_data.dart
+
+CategorieScreen
+categories_screen.dart
+
+Na tela de categoria
+
+é utlizado uma GridView  --> Consegue colocar uma grade de elementos, diferente do ListView (somente um elemento por linha)
+
+SliverGridDelegateWithMaxCrossAxisExtent --> Sliver (área que possui scroll), irá extender os elementos no eixo horizontal (colunas)
+MainAxis = Eixo principal Vertical
+CrossAxis = Eixo Horizontal
+mainAxisExtent = 200 (cada elemento terá no máximo a extensão de 200px)
+
+
