@@ -1,0 +1,18 @@
+em category_item, cada container simula um "botão",
+porém ele é apenas um container, porém o container não possui o método para clicar, para isso
+é necessário envolver com o componente InkWell, ele possui a ação de clicar.
+
+  void _selectCategory(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) {
+          return const CategoriesMealsScreen();
+        },
+      ),
+    );
+  }
+
+  Código para gerar a navegação, então, eu vinculo a ação do click de InkWell com essa função?
+
+      return InkWell(
+      onTap: () => _selectCategory(context),
