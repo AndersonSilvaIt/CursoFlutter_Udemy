@@ -1,0 +1,6 @@
+no main.dart é possível configurar rotas :
+onGenerateRoute
+
+caso a rota não exista, você pode redirecionar para algum local específico.
+
+onUnknownRoute => faz a mesma coisa praticamente

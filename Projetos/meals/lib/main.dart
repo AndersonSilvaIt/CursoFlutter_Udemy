@@ -31,9 +31,17 @@ class MyApp extends StatelessWidget {
             ),
       ),
       routes: {
-        AppRoutes.HOME :(context) => const CategoriesScreen(),
-        AppRoutes.CATEGORIES_MEALS : (ctx) => const CategoriesMealsScreen(),
-        AppRoutes.MEAL_DETAIL : (ctx) => const MetalDetailScreen()
+        AppRoutes.HOME: (context) => const CategoriesScreen(),
+        AppRoutes.CATEGORIES_MEALS: (ctx) => const CategoriesMealsScreen(),
+        AppRoutes.MEAL_DETAIL: (ctx) => const MetalDetailScreen()
+      },
+      onUnknownRoute: (setting) {
+        // Página de erro, ou algo do tipo. 404 Not Found
+        return MaterialPageRoute(
+          builder: (_) {
+            return const CategoriesScreen();
+          },
+        );
       },
     );
   }

@@ -32,3 +32,5 @@ a borda circular do card, então é necessário envolver a imagem com o ClipRRec
       o componente Stack, permite sobrepor um componente, colocar um na frente do outro
 
       softWrap -> caso o texto for muito grande, ele quebra o texto
+
+      
