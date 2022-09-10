@@ -1,0 +1,6 @@
+No ListView.builder
+
+itemCount: meal.ingredients.length,
+
+eu passo esse itemCount, para ele percorrer somente a qualidade de items contidos na lista,
+se não fizer isso, pode ocorrer erro.
