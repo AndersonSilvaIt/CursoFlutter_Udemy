@@ -4,3 +4,23 @@ Implementado abas, mais de uma tela...
       length: 2,
 
       o length significa a quantidade de abas que irá ter 
+
+          return DefaultTabController(
+      length: 2,
+      initialIndex: 1,
+
+      a propriedade initialIndex indica qual será a aba padrão a ser aprensetada,
+      por padrão, é o valor 0
+
+
+      dentro de BottomNavigationBar, a propriedade currentIndex serve para marcar qual tela está selecionada,
+      com isso, é possível usar corretamente unselectedItemColor, selectedItemColor para pintar a cor dentro
+      item que estiver marcado ou desmarcado.
+
+
+            bottomNavigationBar: BottomNavigationBar(
+        onTap: _selectScreen,
+        backgroundColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
+        currentIndex: _selectedScreenIndex,
