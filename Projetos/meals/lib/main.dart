@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meals/screens/metal_detail_screen.dart';
+import 'package:meals/screens/meal_detail_screen.dart';
+import 'package:meals/screens/settings_screen.dart';
 import 'package:meals/screens/tabs_screen.dart';
 import 'screens/categories_screen.dart';
 import 'screens/categories_meals_screen.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.HOME: (context) => const TabsScreen(),
         AppRoutes.CATEGORIES_MEALS: (ctx) => const CategoriesMealsScreen(),
-        AppRoutes.MEAL_DETAIL: (ctx) => const MetalDetailScreen()
+        AppRoutes.MEAL_DETAIL: (ctx) => const MealDetailScreen(),
+        AppRoutes.SETTINGS: (ctx) => const SettingsScreen()
       },
       onUnknownRoute: (setting) {
         // Página de erro, ou algo do tipo. 404 Not Found
