@@ -12,7 +12,13 @@ class MealsItem extends StatelessWidget {
     Navigator.of(ctx).pushNamed(
       AppRoutes.MEAL_DETAIL,
       arguments: meal,
-    );
+    ).then((result) => {
+      if(result == null){
+        print('Sem resultado')
+      }else{
+        print(result)
+      }
+    });
   }
 
   @override
