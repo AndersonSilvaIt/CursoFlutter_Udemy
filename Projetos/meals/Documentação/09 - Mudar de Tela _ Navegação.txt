@@ -1,0 +1,9 @@
+Atualmente, ao navegar nas telas, é adicionado uma pilha, uma tela em cima da outra.
+
+Agora, iremos apenas trocar de tela, não mais adicionar na pilha
+
+
+usando a opção, ele faz essa função, porém é necessário adicionar o botão de voltar na tela de configuração
+pushReplacementNamed
+
+basta adicionar a opção       drawer: const MainDrawer(),  dentro de de settingsScreen
