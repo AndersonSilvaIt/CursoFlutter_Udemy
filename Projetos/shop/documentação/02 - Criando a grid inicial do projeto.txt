@@ -1,0 +1,5 @@
+dentro de ProductsOverviewPage, a grid view, o itemBuilder é configurado como cada item será criado na grid
+
+SliverGridDelegateWithFixedCrossAxisCount => é uma área dentro de um scroll view
+  crossAxisCount: 2,
+  , irá mostrar 2 produtos por linha
