@@ -1,0 +1,6 @@
+flutter create shop
+
+necessário instalar as dependências de 
+dentro de pubspec.yaml
+
+necessário também, registrar as fontes dentro do arquivo pubspec.yaml
