@@ -1,5 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:shop/models/product.dart';
+import 'package:shop/pages/product_detail_page.dart';
+import 'package:shop/utils/app_routes.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
@@ -13,26 +17,33 @@ class ProductItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
+        // ignore: sort_child_properties_last
+        child: GestureDetector(
+          child: Image.network(
+            product.imageUrl,
+            fit: BoxFit.cover,
+          ),
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              AppRoutes.PRODUCT_DETAIL,
+              arguments: product
+            );
+          },
+        ),
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite),
-            color: Theme.of(context).colorScheme.secondary
-          ),
+              onPressed: () {},
+              icon: const Icon(Icons.favorite),
+              color: Theme.of(context).colorScheme.secondary),
           title: Text(
             product.title,
             textAlign: TextAlign.center,
           ),
           trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.shopping_cart),
-            color: Theme.of(context).colorScheme.secondary            
-          ),
-        ),
-        child: Image.network(
-          product.imageUrl,
-          fit: BoxFit.cover,
+              onPressed: () {},
+              icon: const Icon(Icons.shopping_cart),
+              color: Theme.of(context).colorScheme.secondary),
         ),
       ),
     );

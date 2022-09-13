@@ -3,3 +3,5 @@ dentro de ProductsOverviewPage, a grid view, o itemBuilder é configurado como c
 SliverGridDelegateWithFixedCrossAxisCount => é uma área dentro de um scroll view
   crossAxisCount: 2,
   , irá mostrar 2 produtos por linha
+
+  Como a imagem não é possível clicar para fazer alguma ação, então é necessário envolver a mesma com o Widget GestureDetector, usando o método onTap
