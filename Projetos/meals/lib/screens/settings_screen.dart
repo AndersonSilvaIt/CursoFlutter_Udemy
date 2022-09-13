@@ -3,23 +3,22 @@ import 'package:meals/components/main_drawer.dart';
 import 'package:meals/models/settings.dart';
 
 class SettingsScreen extends StatefulWidget {
-
   final Settings settings;
 
   final Function(Settings) onSettingsChanged;
 
-  const SettingsScreen(this.onSettingsChanged, this.settings, {Key? key}) : super(key: key);
+  const SettingsScreen(this.settings, this.onSettingsChanged, {Key? key})
+      : super(key: key);
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  
   late Settings settings;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     settings = widget.settings;
   }

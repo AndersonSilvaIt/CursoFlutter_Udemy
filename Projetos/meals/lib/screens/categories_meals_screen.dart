@@ -5,9 +5,7 @@ import '../models/meals.dart';
 
 class CategoriesMealsScreen extends StatelessWidget {
   
-  
   final List<Meal> meals;
-
   const CategoriesMealsScreen(this.meals, {Key? key}) : super(key: key);
 
   @override
