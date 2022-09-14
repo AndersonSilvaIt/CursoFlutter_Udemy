@@ -1,0 +1,8 @@
+class ProductList with ChangeNotifier {
+  List<Product> _items = dummyProducts;
+
+  List<Product> get items => [..._items];
+
+  usando [..._items], ele retorna um clone da lista, e não a referrência do objeto, com isso, caso remover ou adicionar um item, nãoafetará a lista original
+
+  
