@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.3
-  intl: ^0.17.0    
+  intl: ^0.17.0 
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -75,15 +75,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-   fonts:
-     - family: Lato
-       fonts:
-         - asset: shop/assets/fonts/Lato-Regular.ttf
-         - asset: shop/assets/fonts/Lato-Bold.ttf
-           weight: 700
-     - family: Anton
-       fonts:
-         - asset: shop/assets/fonts/Anton-Regular.ttf
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Bold.ttf
+          weight: 700
+    - family: Anton
+      fonts:
+        - asset: assets/fonts/Anton-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
