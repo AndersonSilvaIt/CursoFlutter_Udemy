@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/models/product_list.dart';
+import '../components/badge.dart';
 import '../components/product_grid.dart';
+import '../models/cart.dart';
 
 enum FilterOptios { Favorite, All }
 
@@ -50,6 +51,17 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
                 //provider.showAll();
               }*/
             },
+          ),
+          Consumer<Cart>(
+            // se eu passar o child pra cá, o que sempre irá alterar é o value, esse child aqui, ficará sempre fixo
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.shopping_cart),
+            ),
+            builder: (ctx, cart, child) => Badge(
+              value: cart.itemsCount.toString(),
+              child: child!,
+            ),
           )
         ],
       ),
