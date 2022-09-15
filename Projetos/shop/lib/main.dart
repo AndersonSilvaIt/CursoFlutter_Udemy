@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/product_list.dart';
-import 'package:shop/pages/counter_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
-import 'package:shop/providers/counter.dart';
 import 'package:shop/utils/app_routes.dart';
 import 'pages/products_overview_page.dart';
 
@@ -27,7 +25,7 @@ class MyApp extends StatelessWidget {
               secondary: Colors.deepOrange,
             ),
             fontFamily: 'Lato'),
-        home: ProductsOverviewPage(),
+        home: const ProductsOverviewPage(),
         routes: {AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDetailPage()},
         debugShowCheckedModeBanner: false,
       ),
