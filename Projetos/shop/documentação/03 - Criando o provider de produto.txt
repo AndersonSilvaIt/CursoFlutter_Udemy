@@ -5,4 +5,11 @@ class ProductList with ChangeNotifier {
 
   usando [..._items], ele retorna um clone da lista, e não a referrência do objeto, com isso, caso remover ou adicionar um item, nãoafetará a lista original
 
-  
+  Outra maneira de usar o provider é envolver o widget com o consumer
+
+      return Consumer<Product>(
+      builder: (ctx, product, _) => ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: GridTile(
+          // ignore: sort_child_properties_last
+          child: GestureDetector(
