@@ -8,3 +8,6 @@ realizado o submit da aplicação, porém se colocar a propriedade como next, es
                 textInputAction: TextInputAction.next,
               ),
             ],
+
+    ao perder o focus, faz um evento
+    _imageUrlFocus.addListener(updateImage);            
