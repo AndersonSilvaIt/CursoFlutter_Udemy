@@ -9,7 +9,6 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Cart cart = Provider.of(context);
-
     final items = cart.items.values.toList();
 
     return Scaffold(
@@ -34,28 +33,21 @@ class CartPage extends StatelessWidget {
                       fontSize: 20,
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const SizedBox(width: 10),
                   Chip(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     label: Text(
-                      'R\$${cart.totlaAmount}',
-                      style: TextStyle(
-                        color:
-                            Theme.of(context).primaryTextTheme.headline6?.color,
+                      'R\$${cart.totalAmount}',
+                      style: const TextStyle(
+                        color: Colors.white,
                       ),
                     ),
-                    backgroundColor: Theme.of(context).primaryColor,
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: () {},
-                    // ignore: sort_child_properties_last
                     child: const Text('COMPRAR'),
-                    style: TextButton.styleFrom(
-                        textStyle:
-                            TextStyle(color: Theme.of(context).primaryColor)),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -65,7 +57,7 @@ class CartPage extends StatelessWidget {
               itemCount: items.length,
               itemBuilder: (ctx, i) => CartItemWidget(items[i]),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/components/badge.dart';
+import 'package:shop/components/product_grid.dart';
+import 'package:shop/models/cart.dart';
 import 'package:shop/utils/app_routes.dart';
-import '../components/badge.dart';
-import '../components/product_grid.dart';
-import '../models/cart.dart';
 
-enum FilterOptios { Favorite, All }
+enum FilterOptions {
+  favorite,
+  all,
+}
 
 class ProductsOverviewPage extends StatefulWidget {
   const ProductsOverviewPage({Key? key}) : super(key: key);
@@ -19,8 +22,6 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
 
   @override
   Widget build(BuildContext context) {
-    //final provider = Provider.of<ProductList>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Minha Loja'),
@@ -29,32 +30,25 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
             icon: const Icon(Icons.more_vert),
             itemBuilder: (_) => [
               const PopupMenuItem(
-                value: FilterOptios.Favorite,
+                value: FilterOptions.favorite,
                 child: Text('Somente Favoritos'),
               ),
               const PopupMenuItem(
-                value: FilterOptios.All,
+                value: FilterOptions.all,
                 child: Text('Todos'),
-              )
+              ),
             ],
-            onSelected: (FilterOptios selectedValue) {
+            onSelected: (FilterOptions selectedValue) {
               setState(() {
-                if (selectedValue == FilterOptios.Favorite) {
+                if (selectedValue == FilterOptions.favorite) {
                   _showFavoriteOnly = true;
                 } else {
                   _showFavoriteOnly = false;
                 }
               });
-
-              /*if (selectedValue == FilterOptios.Favorite) {
-                //provider.showFavoritesOnly();
-              } else {
-                //provider.showAll();
-              }*/
             },
           ),
           Consumer<Cart>(
-            // se eu passar o child pra cá, o que sempre irá alterar é o value, esse child aqui, ficará sempre fixo
             child: IconButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.CART);
@@ -65,7 +59,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               value: cart.itemsCount.toString(),
               child: child!,
             ),
-          )
+          ),
         ],
       ),
       body: ProductGrid(_showFavoriteOnly),
