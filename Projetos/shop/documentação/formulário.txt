@@ -1,0 +1,10 @@
+dentro de product_form_page, a propriedade textInputAction está setada para  TextInputAction.next,
+por padrão, no celular quando digita um texto e clica em "Enter" ou em "Concluido (IOS)", é 
+realizado o submit da aplicação, porém se colocar a propriedade como next, esse input fica desabilitado ...
+
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Nome'),
+                textInputAction: TextInputAction.next,
+              ),
+            ],
