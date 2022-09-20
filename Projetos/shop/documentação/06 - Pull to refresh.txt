@@ -1,0 +1,4 @@
+Ao arrastar a appbar para baixo, é realizado a atualização ....
+
+o componente RefreshIndicator permite realizar a atualização ao arrastar um appbar para baixo.
+
