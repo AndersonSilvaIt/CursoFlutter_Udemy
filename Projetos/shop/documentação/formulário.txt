@@ -11,3 +11,10 @@ realizado o submit da aplicação, porém se colocar a propriedade como next, es
 
     ao perder o focus, faz um evento
     _imageUrlFocus.addListener(updateImage);            
+
+dentro do decoration, é possível colocar customização nas mensagens de erro ....
+
+                    decoration: const InputDecoration(
+                  labelText: 'Nome',
+                  // consigo colocar  validação customizada no texto ...
+                ),
