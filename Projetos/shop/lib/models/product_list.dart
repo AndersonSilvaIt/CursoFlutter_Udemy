@@ -37,8 +37,8 @@ class ProductList with ChangeNotifier {
   }
 
   void addProduct(Product product) {
-    http.post(
-      Uri.parse('${_baseUrl}/products.json'),
+    final filter = http.post(
+      Uri.parse('$_baseUrl/products.json'),
       body: jsonEncode(
         {
           "name": product.name,
@@ -50,8 +50,19 @@ class ProductList with ChangeNotifier {
       ),
     );
 
-    _items.add(product);
-    notifyListeners();
+    filter.then((response) {
+
+      final id = jsonDecode(response.body)['name'];
+      _items.add(Product(
+        id: id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        isFavorite: product.isFavorite
+      ));
+      notifyListeners();
+    });
   }
 
   void updateProduct(Product product) {
