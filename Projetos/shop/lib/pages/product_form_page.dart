@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/models/product.dart';
 import 'package:shop/models/product_list.dart';
-
-import '../models/product.dart';
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({Key? key}) : super(key: key);
@@ -14,20 +13,19 @@ class ProductFormPage extends StatefulWidget {
 class _ProductFormPageState extends State<ProductFormPage> {
   final _priceFocus = FocusNode();
   final _descriptionFocus = FocusNode();
+
   final _imageUrlFocus = FocusNode();
   final _imageUrlController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  final _formData = Map<String, Object>();
+  final _formData = <String, Object>{};
 
   @override
   void initState() {
     super.initState();
-
     _imageUrlFocus.addListener(updateImage);
   }
 
-// Para renderizar a edição, irá vim um produto como parâmetro
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -37,7 +35,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
       if (arg != null) {
         final product = arg as Product;
-
         _formData['id'] = product.id;
         _formData['name'] = product.name;
         _formData['price'] = product.price;
@@ -54,6 +51,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     super.dispose();
     _priceFocus.dispose();
     _descriptionFocus.dispose();
+
     _imageUrlFocus.removeListener(updateImage);
     _imageUrlFocus.dispose();
   }
@@ -64,14 +62,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
   bool isValidImageUrl(String url) {
     bool isValidUrl = Uri.tryParse(url)?.hasAbsolutePath ?? false;
-    bool endWithFile = url.toLowerCase().endsWith('.png') ||
+    bool endsWithFile = url.toLowerCase().endsWith('.png') ||
         url.toLowerCase().endsWith('.jpg') ||
         url.toLowerCase().endsWith('.jpeg');
-
-    return isValidUrl && endWithFile;
+    return isValidUrl && endsWithFile;
   }
 
-  void submitForm() {
+  void _submitForm() {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid) {
@@ -84,6 +81,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
       context,
       listen: false,
     ).saveProduct(_formData);
+
     Navigator.of(context).pop();
   }
 
@@ -91,10 +89,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Formulário de Produtos'),
+        title: const Text('Formulário de Produto'),
         actions: [
           IconButton(
-            onPressed: submitForm,
+            onPressed: _submitForm,
             icon: const Icon(Icons.save),
           )
         ],
@@ -107,36 +105,31 @@ class _ProductFormPageState extends State<ProductFormPage> {
             children: [
               TextFormField(
                 initialValue: _formData['name']?.toString(),
-                decoration: const InputDecoration(
-                  labelText: 'Nome',
-                  // consigo colocar  validação customizada no texto ...
-                ),
+                decoration: const InputDecoration(labelText: 'Nome'),
+                textInputAction: TextInputAction.next,
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceFocus);
                 },
-                textInputAction: TextInputAction.next,
                 onSaved: (name) => _formData['name'] = name ?? '',
                 validator: (_name) {
                   final name = _name ?? '';
-
                   if (name.trim().isEmpty) {
-                    return 'Nome é obrigatório';
+                    return 'Nome é obrigatório.';
                   }
-
                   if (name.trim().length < 3) {
                     return 'Nome precisa no mínimo de 3 letras.';
                   }
-
                   return null;
                 },
               ),
               TextFormField(
                 initialValue: _formData['price']?.toString(),
                 decoration: const InputDecoration(labelText: 'Preço'),
-                focusNode: _priceFocus,
                 textInputAction: TextInputAction.next,
+                focusNode: _priceFocus,
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
+                  signed: true,
                 ),
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_descriptionFocus);
@@ -148,7 +141,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   final price = double.tryParse(priceString) ?? -1;
 
                   if (price <= 0) {
-                    return 'Informe um preço válido';
+                    return 'Informe um preço válido.';
                   }
 
                   return null;
@@ -166,7 +159,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   final description = _description ?? '';
 
                   if (description.trim().isEmpty) {
-                    return 'Descrição é obrigatória';
+                    return 'Descrição é obrigatória.';
                   }
 
                   if (description.trim().length < 10) {
@@ -181,20 +174,20 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      initialValue: _formData['imageURL']?.toString(),
                       decoration:
                           const InputDecoration(labelText: 'Url da Imagem'),
-                      focusNode: _imageUrlFocus,
-                      textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.url,
+                      textInputAction: TextInputAction.done,
+                      focusNode: _imageUrlFocus,
                       controller: _imageUrlController,
-                      onFieldSubmitted: (_) => submitForm(),
-                      onSaved: (imageURL) =>
-                          _formData['imageURL'] = imageURL ?? '',
+                      onFieldSubmitted: (_) => _submitForm(),
+                      onSaved: (imageUrl) =>
+                          _formData['imageUrl'] = imageUrl ?? '',
                       validator: (_imageUrl) {
                         final imageUrl = _imageUrl ?? '';
+
                         if (!isValidImageUrl(imageUrl)) {
-                          return 'Informe uma Url válida';
+                          return 'Informe uma Url válida!';
                         }
 
                         return null;
@@ -204,7 +197,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   Container(
                     height: 100,
                     width: 100,
-                    margin: const EdgeInsets.only(top: 10, left: 10),
+                    margin: const EdgeInsets.only(
+                      top: 10,
+                      left: 10,
+                    ),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
@@ -214,13 +210,15 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     alignment: Alignment.center,
                     child: _imageUrlController.text.isEmpty
                         ? const Text('Informe a Url')
-                        : FittedBox(
-                            fit: BoxFit.cover,
-                            child: Image.network(
-                              _imageUrlController.text,
+                        : SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.network(_imageUrlController.text),
                             ),
                           ),
-                  )
+                  ),
                 ],
               ),
             ],
