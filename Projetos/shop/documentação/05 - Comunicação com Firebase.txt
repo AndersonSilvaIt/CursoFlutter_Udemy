@@ -1,2 +1,4 @@
 é necessário instalar a dependência
   http: ^0.13.5
+
+  no firebird, é nececessário terminar a requisição com ".json", caso contrário, não funciona.

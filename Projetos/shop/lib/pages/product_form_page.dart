@@ -213,9 +213,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         : SizedBox(
                             width: 100,
                             height: 100,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Image.network(_imageUrlController.text),
+                            child: SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                child: Image.network(_imageUrlController.text),
+                              ),
                             ),
                           ),
                   ),
