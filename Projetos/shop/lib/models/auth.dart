@@ -7,16 +7,31 @@ class Auth with ChangeNotifier {
   static const _url =
       'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDPryFstQ4phLu93NYZP_wANcfJyicluiM ';
 
-  Future<void> signup(String email, String pass) async {
-    final response = await http.post(
-      Uri.parse(_url),
+  Future<void> _authenticate(String email, String pass, String urlFragment) async {
+    final url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=AIzaSyDPryFstQ4phLu93NYZP_wANcfJyicluiM';
+
+    final response = http.post(
+      Uri.parse(url),
       body: jsonEncode({
-        'email' : email,
+        'email': email,
         'password': pass,
-        'returnSecureToken': true
+        'returnSecureToken': true,
       }),
     );
 
-    print(response.body);
+    print(response);
   }
+
+  Future<void> signup(String email, String pass) async {
+
+    _authenticate(email, pass, 'signUp');
+
+  }
+
+  Future<void> login(String email, String pass) async {
+
+    _authenticate(email, pass, 'signInWithPassword');
+
+  }  
 }
