@@ -1,0 +1,14 @@
+dentro do console do firebase, 
+
+Criação -> Realtiem Database - Aba Regras(rules)
+mudar o json para 
+
+{
+  "rules": {
+    ".read": "auth != null", 
+    ".write": "auth != null",
+  }
+}
+, isso significa que só poderá ter acesso no banco, quem estiver autenticado.
+
+Criação -> Authentication -> novo, escolher a opção de email e senha -> ativar
