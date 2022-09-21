@@ -12,3 +12,11 @@ mudar o json para
 , isso significa que só poderá ter acesso no banco, quem estiver autenticado.
 
 Criação -> Authentication -> novo, escolher a opção de email e senha -> ativar
+
+é necessário pegar a URL de autenticação do google
+pesquisar por REST AUTH ....
+Pegar o link.
+
+Para obter a chave do google, dentro do projeto que foi criado
+Visão geral do projeto -> Icone de config -> Configuração do Projeto -> Chave de API da web, copiar o conteúdo
+ex:  AIzaSyDPryFstQ4phLu93NYZP_wANcfJyicluiM 
