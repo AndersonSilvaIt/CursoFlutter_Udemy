@@ -1,0 +1,2 @@
+Remove primeiro o produto na lista (tela), depois exclui do firebase, caso aconteça algum erro, 
+é restaurado o produto na tela.
