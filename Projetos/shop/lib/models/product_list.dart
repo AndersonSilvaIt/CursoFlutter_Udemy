@@ -7,7 +7,7 @@ import 'package:shop/models/product.dart';
 import 'package:shop/utils/constants.dart';
 
 class ProductList with ChangeNotifier {
-  final _baseUrl = Constants.productBaseUrl;
+  final _baseUrl = Constants.PRODUCT_BASE_URL;
   final List<Product> _items = [];
 
   List<Product> get items => [..._items];
