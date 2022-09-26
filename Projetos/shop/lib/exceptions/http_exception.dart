@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 
 class HttpException implements Exception {
   final String msg;
