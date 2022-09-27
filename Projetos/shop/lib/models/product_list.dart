@@ -8,7 +8,7 @@ import 'package:shop/utils/constants.dart';
 
 class ProductList with ChangeNotifier {
 
-  String _token;
+  final String _token;
 
   List<Product> _items = [];
 
