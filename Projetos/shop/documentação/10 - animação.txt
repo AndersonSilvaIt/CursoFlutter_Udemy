@@ -9,3 +9,14 @@ Ou seja : 400 - 310 = 90
 90 / 60 = 1.5px por segundo ...
 
 então no caso, o componente auth_form irá extender de SingleTickerProviderStateMixin
+
+foi alterado a parte do container e formulário,
+        builder: (ctx, childForm) => Container(
+          padding: const EdgeInsets.all(16),
+          //height: _isLogin() ? 310 : 400,
+          height: _heightAnimation?.value.height ?? (_isLogin() ? 310 : 400),
+          width: deviceSize.width * 0.75,
+          child: childForm,
+        ),
+
+        pois o que precisa ser  atualizado (renderizado) é somente o tamanho do container, e não o formulário todo
