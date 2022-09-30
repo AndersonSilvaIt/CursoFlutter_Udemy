@@ -1,0 +1,11 @@
+o Flutter trabalha com 60 frames por segundo
+
+Hoje, a aplicação, caso for a tela de login, a altura do card é de 310px, 
+caso for registrar, o card fica com 400.
+
+Então entre esses dois, é possível fazer a animação da altura.
+
+Ou seja : 400 - 310 = 90
+90 / 60 = 1.5px por segundo ...
+
+então no caso, o componente auth_form irá extender de SingleTickerProviderStateMixin
