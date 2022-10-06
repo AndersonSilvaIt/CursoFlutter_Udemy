@@ -28,13 +28,13 @@ class ProductList with ChangeNotifier {
 
   Future<void> loadProducts() async {
     final response = await http.get(
-      Uri.parse('${Constants.PRODUCT_BASE_URL}.json?auth=$_token'),
+      Uri.parse('${Constants.productBaseUrl}.json?auth=$_token'),
     );
     if (response.body == 'null') return;
 
     final favResponse = await http.get(
       Uri.parse(
-        '${Constants.USER_FAVORITES_URL}/$_userId.json?auth=$_token',
+        '${Constants.userFavoritesUrl}/$_userId.json?auth=$_token',
       ),
     );
 
@@ -80,7 +80,7 @@ class ProductList with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     final response = await http.post(
-      Uri.parse('$Constants.PRODUCT_BASE_URL.json?auth=$_token'),
+      Uri.parse('${Constants.productBaseUrl}.json?auth=$_token'),
       body: jsonEncode(
         {
           "name": product.name,
@@ -108,7 +108,7 @@ class ProductList with ChangeNotifier {
     if (index >= 0) {
       await http.patch(
         Uri.parse(
-            '$Constants.PRODUCT_BASE_URL/${product.id}.json?auth=$_token'),
+            '${Constants.productBaseUrl}/${product.id}.json?auth=$_token'),
         body: jsonEncode(
           {
             "name": product.name,
@@ -134,7 +134,7 @@ class ProductList with ChangeNotifier {
 
       final response = await http.delete(
         Uri.parse(
-            '$Constants.PRODUCT_BASE_URL/${product.id}.json?auth=$_token'),
+            '$Constants.productBaseUrl/${product.id}.json?auth=$_token'),
       );
 
       if (response.statusCode >= 400) {

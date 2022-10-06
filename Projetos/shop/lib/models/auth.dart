@@ -1,20 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop/data/store.dart';
 import 'package:shop/exceptions/auth_exception.dart';
-
-import '../data/store.dart';
+import 'package:shop/utils/constants.dart';
 
 class Auth with ChangeNotifier {
   String? _token;
   String? _email;
   String? _userId;
-  DateTime? _expiresDate;
-  Timer? _logout_Timer;
+  DateTime? _expiryDate;
+  Timer? _logoutTimer;
 
   bool get isAuth {
-    final isValid = _expiresDate?.isAfter(DateTime.now()) ?? false;
+    final isValid = _expiryDate?.isAfter(DateTime.now()) ?? false;
     return _token != null && isValid;
   }
 
@@ -31,55 +32,53 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> _authenticate(
-      String email, String pass, String urlFragment) async {
+      String email, String password, String urlFragment) async {
     final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=AIzaSyDPryFstQ4phLu93NYZP_wANcfJyicluiM';
-
+        'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=${Constants.webApiKey}';
     final response = await http.post(
       Uri.parse(url),
       body: jsonEncode({
         'email': email,
-        'password': pass,
+        'password': password,
         'returnSecureToken': true,
       }),
     );
+    print('Retorno do body: ' + response.body);
+    final Map<String, dynamic> body = jsonDecode(response.body);
 
-    final body = jsonDecode(response.body);
+    //print('Convertendo oanderson@gmail.com  body: ' + body);
 
     if (body['error'] != null) {
       throw AuthException(body['error']['message']);
     } else {
       _token = body['idToken'];
       _email = body['email'];
-      _userId = body['localid'];
+      _userId = body['localId'];
 
-      _expiresDate = DateTime.now().add(
+      _expiryDate = DateTime.now().add(
         Duration(
-          seconds: int.parse(body['expiresInd']),
+          seconds: int.parse(body['expiresIn']),
         ),
       );
 
-      Store.saveMap(
-        'userData',
-        {
-          'token': _token,
-          'email': _email,
-          'userId': _userId,
-          'expiresDate': _expiresDate!.toIso8601String(),
-        },
-      );
+      Store.saveMap('userData', {
+        'token': _token,
+        'email': _email,
+        'userId': _userId,
+        'expiryDate': _expiryDate!.toIso8601String(),
+      });
 
       _autoLogout();
       notifyListeners();
     }
   }
 
-  Future<void> signup(String email, String pass) async {
-    return _authenticate(email, pass, 'signUp');
+  Future<void> signup(String email, String password) async {
+    return _authenticate(email, password, 'signUp');
   }
 
-  Future<void> login(String email, String pass) async {
-    return _authenticate(email, pass, 'signInWithPassword');
+  Future<void> login(String email, String password) async {
+    return _authenticate(email, password, 'signInWithPassword');
   }
 
   Future<void> tryAutoLogin() async {
@@ -89,14 +88,13 @@ class Auth with ChangeNotifier {
 
     if (userData.isEmpty) return;
 
-    final expiresDate = DateTime.parse(userData['expiresDate']);
-
-    if (expiresDate.isBefore(DateTime.now())) return;
+    final expiryDate = DateTime.parse(userData['expiryDate']);
+    if (expiryDate.isBefore(DateTime.now())) return;
 
     _token = userData['token'];
     _email = userData['email'];
     _userId = userData['userId'];
-    _expiresDate = expiresDate;
+    _expiryDate = expiryDate;
 
     _autoLogout();
     notifyListeners();
@@ -106,7 +104,7 @@ class Auth with ChangeNotifier {
     _token = null;
     _email = null;
     _userId = null;
-    _expiresDate = null;
+    _expiryDate = null;
     _clearLogoutTimer();
     Store.remove('userData').then((_) {
       notifyListeners();
@@ -114,15 +112,14 @@ class Auth with ChangeNotifier {
   }
 
   void _clearLogoutTimer() {
-    _logout_Timer?.cancel();
-    _logout_Timer = null;
+    _logoutTimer?.cancel();
+    _logoutTimer = null;
   }
 
   void _autoLogout() {
     _clearLogoutTimer();
-    final timeToLogout = _expiresDate?.difference(DateTime.now()).inSeconds;
-
-    _logout_Timer = Timer(
+    final timeToLogout = _expiryDate?.difference(DateTime.now()).inSeconds;
+    _logoutTimer = Timer(
       Duration(seconds: timeToLogout ?? 0),
       logout,
     );

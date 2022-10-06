@@ -20,3 +20,5 @@ foi alterado a parte do container e formulário,
         ),
 
         pois o que precisa ser  atualizado (renderizado) é somente o tamanho do container, e não o formulário todo
+
+        Para usar uma imagem de Place Holder, é preciso adicionar a imagem no arquivo pubspec.yaml

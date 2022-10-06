@@ -88,6 +88,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
       ).saveProduct(_formData);
       Navigator.of(context).pop();
     } catch (error) {
+    print(error);
       await showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
