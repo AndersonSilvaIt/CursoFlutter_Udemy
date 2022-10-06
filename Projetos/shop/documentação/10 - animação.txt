@@ -22,3 +22,7 @@ foi alterado a parte do container e formulário,
         pois o que precisa ser  atualizado (renderizado) é somente o tamanho do container, e não o formulário todo
 
         Para usar uma imagem de Place Holder, é preciso adicionar a imagem no arquivo pubspec.yaml
+
+
+        Dentro de product_grid_item é implementado o widget Hero, ou seja, quando clicar, ao sair será feita uma animação
+        Dentro de produt_detal também é implementado o Hero usando o mesmo id
