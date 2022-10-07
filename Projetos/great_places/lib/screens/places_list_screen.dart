@@ -23,29 +23,30 @@ class PlacesListScreen extends StatelessWidget {
       ),
       body: FutureBuilder(
         future: Provider.of<GreatePlaces>(context, listen: false).loadPlaces(),
-        builder: ((context, snapshot) => snapshot.connectionState == ConnectionState.waiting ? 
-        const Center(child: CircularProgressIndicator()) :
-         Consumer<GreatePlaces>(
-          child: const Center(
-            child: Text('Nenhum local cadastrado!'),
-          ),
-          builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
-              ? ch!
-              : ListView.builder(
-                  itemCount: greatPlaces.itemsCount,
-                  itemBuilder: (ctx, i) => ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: FileImage(
-                        greatPlaces.getItemByIndex(i).image,
+        builder: (
+          (context, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? const Center(child: CircularProgressIndicator())
+            : Consumer<GreatePlaces>(
+                child: const Center(child: Text('Nenhum local cadastrado!')),
+                builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
+                    ? ch!
+                    : ListView.builder(
+                        itemCount: greatPlaces.itemsCount,
+                        itemBuilder: (ctx, i) => ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: FileImage(
+                              greatPlaces.getItemByIndex(i).image,
+                            ),
+                          ),
+                          title: Text(
+                            greatPlaces.getItemByIndex(i).title,
+                          ),
+                          onTap: () {},
+                        ),
                       ),
-                    ),
-                    title: Text(
-                      greatPlaces.getItemByIndex(i).title,
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-        ),
+              )
+              ),
       ),
     );
   }
