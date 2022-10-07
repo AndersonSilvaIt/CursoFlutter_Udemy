@@ -1,0 +1,7 @@
+irá utilizar a biblioteca sqflite
+
+2.0.3+1
+
+await db.insert('table', data, conflictAlgorithm: sql.ConflictAlgorithm.replace)
+o caso do replace, ele verifica se o registro já existe, caso positivo, ele troca e coloca o novo
+no lugar
