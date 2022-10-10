@@ -62,11 +62,12 @@ class _ImageInputState extends State<ImageInput> {
         ),
         Expanded(
           child: TextButton.icon(
-              onPressed: _takePicture,
-              icon: const Icon(Icons.camera),
-              label: const Text(
-                'Tirar Foto',
-              )),
+            onPressed: _takePicture,
+            icon: const Icon(Icons.camera),
+            label: const Text(
+              'Tirar Foto',
+            ),
+          ),
         )
       ],
     );

@@ -5,6 +5,7 @@ import 'package:great_places/providers/greate_places.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/image_input.dart';
+import '../widgets/location_input.dart';
 
 class PlaceFormScreen extends StatefulWidget {
   const PlaceFormScreen({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
     if (_titleController.text.isEmpty || _pickedImage == null) {
       return;
     }
-    
+
     Provider.of<GreatePlaces>(context, listen: false).addPlace(
       _titleController.text,
       _pickedImage!,
@@ -56,7 +57,9 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    ImageInput(this._selectrImage),
+                    ImageInput(_selectrImage),
+                    const SizedBox(height: 10),
+                    const LocationInput(),
                   ],
                 ),
               ),
