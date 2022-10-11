@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:great_places/providers/greate_places.dart';
-import 'package:great_places/utils/db_util.dart';
 import 'package:provider/provider.dart';
 import '../utils/app_routes.dart';
 

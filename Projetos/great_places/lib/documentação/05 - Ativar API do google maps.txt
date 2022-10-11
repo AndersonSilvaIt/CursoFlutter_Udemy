@@ -1,0 +1,43 @@
+Fala, pessoal!
+
+Desde a data de gravação do curso, o Google Cloud acabou passando por algumas mudanças. Quase tudo permanece igual. Caso se sintam confusos por conta da interface do site ter mudado quando comparado ao conteúdo mostrado no curso, basta fazer o seguinte:
+
+Entre no site https://console.cloud.google.com com sua conta do Google, e crie um projeto. Com o projeto criado, você precisará ativar a questão do cartão de 
+crédito que o professor avisou durante a aula. Isso é necessário, mesmo que utilizemos a versão gratuita da API; para fazer isso basta entrar nesse 
+link https://console.cloud.google.com/project/_/billing/enable. Depois, basta navegar para a área do seu projeto, ir para a parte de visão geral das APIs, 
+clicar em ativar APIs e serviços e buscar por Maps Static API, Places API, Geocoding API e também os SDK's do dispositivo a ser utilizado Maps SDK for Android e Maps SDK for iOS. Com os quatro ou cinco ativados, você volta para a visão geral das APIs e vai na parte de Credenciais no menu à esquerda, lá você poderá gerar e copiar a chave para a sua API.
+
+Bons estudos!
+
+Chave:AIzaSyDPryFstQ4phLu93NYZP_wANcfJyicluiM
+
+Instalado mais um pacote no aplicativo
+
+google_maps_flutter 
+google_maps_flutter 2.2.1
+
+Após instalar esse pacote, também é preciso configurar o android e IOS
+
+no Android
+AndroidManifest.xml
+android/app/src/main  --> Se atentar para selecionar o correto.
+
+é preciso informar a chave do google maps criada anteriormente
+AIzaSyDPryFstQ4phLu93NYZP_wANcfJyicluiM
+
+Para o IOS, dentro de AppDeletage IOS Runner
+
+o arquivo AppDelegate.swift
+
+Importar o import GoogleMaps
+
+Necessário implementar essa linha de código:
+GMSServices.provideAPIKey("YOUR KEY HERE")
+
+Ficando assim
+
+    GMSServices.provideAPIKey("YOUR KEY HERE")
+    GeneratedPluginRegistrant.register(with: self)
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+
+    
