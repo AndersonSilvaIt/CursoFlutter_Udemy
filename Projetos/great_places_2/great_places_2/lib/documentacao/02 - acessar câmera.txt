@@ -1,0 +1,32 @@
+para usar a câmera, é preciso instalar uma dependência de biblioteca
+
+
+image picker
+
+  image_picker: ^0.8.6
+
+  Salvar imagem em uma pasta do projeto
+  path_provider: ^2.0.11
+  path: ^1.8.2
+
+  Ao usar no IOS é necessário implementar uma configuração
+
+  info.plist
+
+  dentro desse arquivo em ios .... / info.plist, é preciso adicionar mais algumas chaves para liberação de acesso
+  ao recurso da câmeras
+
+  NSPhotoLibraryUsageDescription - describe why your app needs permission for the photo library. This is called Privacy - Photo Library Usage Description in the visual editor.
+This permission is not required for image picking on iOS 11+ if you pass false for requestFullMetadata.
+NSCameraUsageDescription - describe why your app needs access to the camera. This is called Privacy - Camera Usage Description in the visual editor.
+NSMicrophoneUsageDescription - describe why your app needs access to the microphone, if you intend to record videos. This is called Privacy - Microphone Usage Description in the visual editor.
+
+
+Verificar também as versões de API do android, caso for necessário configurar também
+
+Configuração informada para o IOS
+	<key>NSCameraUsageDescription</key>
+	<string>We need to take a picture</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need to take a picture</string>	

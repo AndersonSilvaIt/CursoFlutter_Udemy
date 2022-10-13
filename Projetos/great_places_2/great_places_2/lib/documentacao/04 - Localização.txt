@@ -1,0 +1,12 @@
+é necessário instalar o pacote 
+
+location 4.4.0
+dentro do arquivo   info.plist
+é necessário realizar uma configuração para poder habilitar a localização
+
+NSLocationWhenInUseUsageDescription
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Neet to get your location!</string>	
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Neet to get your location!</string>		

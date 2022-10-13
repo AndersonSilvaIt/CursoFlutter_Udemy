@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:great_places/utils/db_util.dart';
 import '../models/place.dart';
+import '../utils/db_util.dart';
+
 
 class GreatePlaces with ChangeNotifier {
   List<Place> _items = [];

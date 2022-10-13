@@ -1,0 +1,6 @@
+Instalado o provider na aplicação
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.3
+  

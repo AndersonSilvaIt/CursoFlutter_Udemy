@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:great_places/providers/greate_places.dart';
-import 'package:great_places/screens/place_form_screen.dart';
-import 'package:great_places/screens/places_list_screen.dart';
-import 'package:great_places/utils/app_routes.dart';
 import 'package:provider/provider.dart';
+import 'providers/greate_places.dart';
+import 'screens/place_form_screen.dart';
+import 'screens/places_list_screen.dart';
+import 'utils/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
