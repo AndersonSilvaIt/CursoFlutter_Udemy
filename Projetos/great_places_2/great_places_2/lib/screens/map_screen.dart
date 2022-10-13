@@ -34,7 +34,7 @@ class _MapScreenState extends State<MapScreen> {
       appBar: AppBar(
         title: const Text('Selecione ...'),
         actions: [
-          if (widget.isreadonly)
+          if (!widget.isreadonly)
             IconButton(
               onPressed: _picketPosition == null
                   ? null

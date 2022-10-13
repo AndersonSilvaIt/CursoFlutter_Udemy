@@ -17,13 +17,17 @@ class GreatePlaces with ChangeNotifier {
           (item) => Place(
             id: item['id'],
             title: item['title'],
-            location: null,
+            location: PlaceLocation(
+              latitude: item['latitude'],
+              longitude: item['longitude'],
+              address: item['address'],
+            ),
             image: File(item['image']),
           ),
         )
         .toList();
 
-        notifyListeners();
+    notifyListeners();
   }
 
   List<Place> get items {
@@ -39,14 +43,16 @@ class GreatePlaces with ChangeNotifier {
   }
 
   void addPlace(String title, File image, LatLng position) async {
-
-    String  address = await LocationUtil.getAddressFrom(position);
+    String address = await LocationUtil.getAddressFrom(position);
 
     final newPlace = Place(
       id: Random().nextDouble().toString(),
       title: title,
       image: image,
-      location: PlaceLocation(latitude: position.latitude, longitude: position.longitude, address: address),
+      location: PlaceLocation(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          address: address),
     );
 
     _items.add(newPlace);
@@ -54,6 +60,9 @@ class GreatePlaces with ChangeNotifier {
       'id': newPlace.id,
       'title': newPlace.title,
       'image': newPlace.image.path,
+      'latitude': position.latitude,
+      'longitude': position.longitude,
+      'address': address,
     });
 
     notifyListeners();

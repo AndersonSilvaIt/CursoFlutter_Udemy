@@ -22,8 +22,7 @@ class PlacesListScreen extends StatelessWidget {
       ),
       body: FutureBuilder(
         future: Provider.of<GreatePlaces>(context, listen: false).loadPlaces(),
-        builder: (
-          (context, snapshot) => snapshot.connectionState ==
+        builder: ((context, snapshot) => snapshot.connectionState ==
                 ConnectionState.waiting
             ? const Center(child: CircularProgressIndicator())
             : Consumer<GreatePlaces>(
@@ -38,14 +37,14 @@ class PlacesListScreen extends StatelessWidget {
                               greatPlaces.getItemByIndex(i).image,
                             ),
                           ),
-                          title: Text(
-                            greatPlaces.getItemByIndex(i).title,
+                          title: Text(greatPlaces.getItemByIndex(i).title),
+                          subtitle: Text(
+                            greatPlaces.getItemByIndex(i).location!.address!,
                           ),
                           onTap: () {},
                         ),
                       ),
-              )
-              ),
+              )),
       ),
     );
   }
