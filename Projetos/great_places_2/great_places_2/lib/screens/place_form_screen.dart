@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import '../providers/greate_places.dart';
 import '../widgets/image_input.dart';
@@ -15,20 +16,31 @@ class PlaceFormScreen extends StatefulWidget {
 class _PlaceFormScreenState extends State<PlaceFormScreen> {
   final _titleController = TextEditingController();
   File? _pickedImage;
+  LatLng? _pickedPosition;
 
   void _selectrImage(File picketImage) {
-    _pickedImage = picketImage;
+    setState(() {
+      _pickedImage = picketImage;
+    });
+  }
+
+  void _selectPosition(LatLng position) {
+    setState(() {
+      _pickedPosition = position;
+    });
+  }
+
+  bool _isValidForm() {
+    return _titleController.text.isNotEmpty &&
+        _pickedImage != null &&
+        _pickedPosition != null;
   }
 
   void _submitForm() {
-    if (_titleController.text.isEmpty || _pickedImage == null) {
-      return;
-    }
+    if (_isValidForm()) return;
 
-    Provider.of<GreatePlaces>(context, listen: false).addPlace(
-      _titleController.text,
-      _pickedImage!,
-    );
+    Provider.of<GreatePlaces>(context, listen: false)
+        .addPlace(_titleController.text, _pickedImage!, _pickedPosition!);
 
     Navigator.of(context).pop();
   }
@@ -57,7 +69,7 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                     const SizedBox(height: 10),
                     ImageInput(_selectrImage),
                     const SizedBox(height: 10),
-                    const LocationInput(),
+                    LocationInput(_selectPosition),
                   ],
                 ),
               ),
@@ -72,7 +84,7 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
               elevation: 0,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
-            onPressed: _submitForm,
+            onPressed: _isValidForm() ? _submitForm : null,
           ),
         ],
       ),
