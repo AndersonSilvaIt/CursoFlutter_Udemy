@@ -1,0 +1,12 @@
+necessário instalar a dependência do image picker dentro de pubspec.yaml
+
+  image_picker: ^0.8.6
+
+  é preciso também, fazer uma configuração para o IOS, dentro de Info.plist
+
+  	<key>NSPhotoLibraryUsageDescription </key>
+	<string>We need access to let you pick an image</string>	
+	<key>NSCameraUsageDescription  </key>
+	<string>We need access to let you pick an image</string>	
+	<key>NSMicrophoneUsageDescription  </key>
+	<string>We need access to let you pick an image</string>	
