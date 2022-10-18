@@ -7,7 +7,7 @@ abstract class AuthService {
   Stream<ChartUser?> get userChanges;
 
   Future<void> signup(
-    String nome,
+    String name,
     String email,
     String password,
     File image,
