@@ -1,0 +1,3 @@
+usando o "static" dentro de uma classe, o objeto acaba sendo do tipo "Singleton",
+mesmo se instanciar várias classes, o objeto continua com o mesmo valor.
+

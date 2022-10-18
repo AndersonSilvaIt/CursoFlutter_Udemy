@@ -9,4 +9,4 @@ necessário instalar a dependência do image picker dentro de pubspec.yaml
 	<key>NSCameraUsageDescription  </key>
 	<string>We need access to let you pick an image</string>	
 	<key>NSMicrophoneUsageDescription  </key>
-	<string>We need access to let you pick an image</string>	
+	<string>We need access to let you pick an image</string>	 
