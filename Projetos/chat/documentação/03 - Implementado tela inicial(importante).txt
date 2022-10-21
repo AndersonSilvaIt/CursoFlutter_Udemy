@@ -1,0 +1,2 @@
+na tela de chat_page, é usado o Widget SafeArea(), isso permite no IPhone, não preenche
+as áreas utilizadas na parte debaixo;
