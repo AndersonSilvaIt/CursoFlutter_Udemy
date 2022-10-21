@@ -10,3 +10,6 @@ necessário instalar a dependência do image picker dentro de pubspec.yaml
 	<string>We need access to let you pick an image</string>	
 	<key>NSMicrophoneUsageDescription  </key>
 	<string>We need access to let you pick an image</string>	 
+
+	Para mportar uma imagem externa para a aplicação, 
+	é preciso registrar a mesma dentro do arquivo pubspeck .yml
