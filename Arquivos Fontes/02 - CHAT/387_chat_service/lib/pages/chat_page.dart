@@ -10,16 +10,16 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DBR Chat'),
+        title: const Text('Cod3r Chat'),
         actions: [
           DropdownButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.more_vert,
-              color: Colors.blue,
+              color: Theme.of(context).primaryIconTheme.color,
             ),
             items: [
               DropdownMenuItem(
-                value: 'logou',
+                value: 'logout',
                 child: Container(
                   child: Row(
                     children: const [
@@ -28,24 +28,26 @@ class ChatPage extends StatelessWidget {
                         color: Colors.black87,
                       ),
                       SizedBox(width: 10),
-                      Text('Sair')
+                      Text('Sair'),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
             onChanged: (value) {
               if (value == 'logout') {
                 AuthService().logout();
               }
             },
-          )
+          ),
         ],
       ),
       body: SafeArea(
         child: Column(
           children: const [
-            Expanded(child: Messages()),
+            Expanded(
+              child: Messages(),
+            ),
             NewMessage(),
           ],
         ),
