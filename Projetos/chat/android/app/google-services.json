@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "428321026890",
+    "project_id": "cod3r-chat-732d5",
+    "storage_bucket": "cod3r-chat-732d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428321026890:android:8233f69c461c04da1a07b3",
+        "android_client_info": {
+          "package_name": "br.com.dbrcode.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428321026890-j4vf0s1lmc8ahf0dlphvabj1fuc87jnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfp0amROhCYy_1c8RHPdQ1vZXT4NsNeYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428321026890-j4vf0s1lmc8ahf0dlphvabj1fuc87jnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,17 @@
+ir no firebase do google e criar um novo projeto
+
+Configurações para o Android ...
+
+Na página inicial clicar no ícone do Android.
+
+Nome do pacote do android:
+br.com.dbrcode.chat
+
+DBRCode Chat Android
+
+fazer o download do arquivo json
+
+é necessário colocar no lugar correto, android/app/arquivo_json.json
+
+no arquivo build.gradle, fora de android/buidl.gradle . o arquivo do projeto...
+
