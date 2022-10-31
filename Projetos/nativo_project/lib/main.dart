@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +30,20 @@ class _MyHomePageState extends State<MyHomePage> {
   int _a = 0;
   int _b = 0;
 
-  void _calcSum() {
+  Future<void> _calcSum() async {
+    const channel = MethodChannel('dbrcode.com.br/nativo');
+
+    try {
+      final sum = await channel.invokeListMethod('calcSum', {"a": _a, "b": _b});
+
+      setState(() {
+        _sum = sum as int;
+      });
+    } on PlatformException {
+      setState(() {
+        _sum = 0;
+      });
+    }
     setState(() {
       _sum = _a + _b;
     });
