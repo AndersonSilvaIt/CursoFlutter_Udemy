@@ -15,3 +15,9 @@ fazer o download do arquivo json
 
 no arquivo build.gradle, fora de android/buidl.gradle . o arquivo do projeto...
 
+é necessário instalar algumas configurações do firebase
+cloud_firestore, dentro do arquivo pubspec
+
+  cloud_firestore: ^4.0.3
+
+  firebase_auth
